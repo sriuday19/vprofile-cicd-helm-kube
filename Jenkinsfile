@@ -12,6 +12,12 @@ pipeline {
     
     stages {
 
+        stage('building artifact') {
+            steps {
+                sh 'mvn clean package'
+            }
+        }
+
         stage('performing unit test') {
             steps {
                 sh 'mvn test'
@@ -24,12 +30,6 @@ pipeline {
                 sh 'mvn checkstyle:checkstyle'
             }
        
-        }
-
-        stage('buolding artifact') {
-            steps {
-                sh 'mvn clean package'
-            }
         }
 
         stage('sonarcloud') {
