@@ -36,7 +36,7 @@ pipeline {
         stage('sonarcloud') {
             steps {
                 withSonarQubeEnv('SonarCloud') {
-                    sh "${scannerHome}"/bin/sonar-scanner
+                    sh "${scannerHome}/bin/sonar-scanner"
                 }
                 
             }
