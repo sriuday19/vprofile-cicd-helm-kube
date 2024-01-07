@@ -32,6 +32,7 @@ pipeline {
 
         stage('sonarcloud analysis') {
             steps {
+                withSonarQubeEnv('SonarCloud')
                 sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=sriudayprofile-projects_su-analysis'
             }
         }
