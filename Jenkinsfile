@@ -35,8 +35,8 @@ pipeline {
         stage('sonarcloud') {
             steps {
                 withSonarQubeEnv('SonarCloud') {
-                    sh "${scannerHome}/bin/sonar-scanner
-                    -Dsonar.organization=vprofile-key01
+                    sh "${scannerHome}/bin/sonar-scanner \
+                    -Dsonar.organization=vprofile-key01 \
                     -Dsonar.projectKey=vprofile-key01_vprofile-app \
                     -Dsonar.projectName=vprofile-app \
                     -Dsonar.projectVersion=1.0 \
