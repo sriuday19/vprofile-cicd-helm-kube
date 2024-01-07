@@ -23,17 +23,22 @@ pipeline {
             steps {
                 sh 'mvn checkstyle:checkstyle'
             }
-            post {
-                success {
-                    echo 'checkstyle done successfully'
-                }
-            }
+       
         }
 
         stage('sonarcloud analysis') {
             steps {
                 withSonarQubeEnv('SonarCloud')
-                sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=sriudayprofile-projects_su-analysis'
+                sh 'mvn clean package'
+            }
+        }
+
+        stage('sonarcloud') {
+            steps {
+                withSonarQubeEnv('SonarCloud') {
+                    sh "${scannerHome}"/bin/sonar-scanner
+                }
+                
             }
         }
     }
