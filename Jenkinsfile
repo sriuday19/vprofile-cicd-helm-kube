@@ -23,6 +23,11 @@ pipeline {
             steps {
                 sh 'mvn checkstyle:checkstyle'
             }
+            post {
+                success {
+                    echo 'checkstyle done successfully'
+                }
+            }
         }
 
         stage('sonarcloud analysis') {
