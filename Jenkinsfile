@@ -27,20 +27,7 @@ pipeline {
 
         stage('sonarcloud analysis') {
             steps {
-
-                withSonarQubeEnv('SonarCloud') {
-                    sh ''' ${scannerHome}/bin/sonar-scanner \
-                    -Dsonar.projectKey=vprofile \
-                    -Dsonar.projectName=vprofile-app \
-                    -Dsonar.projectVersion=1.0 \
-                    -Dsonar.sources=src/ \
-                    -Dsonar.java.binaries=target/test-classes/com/visualpathit/account/controllerTest/ \
-                    -Dsonar.junit.reportsPath=target/surefire-reports/ \
-                    -Dsonar.jacoco.reportsPath=target/jacoco.exec \
-                    -Dsonar.java.checkstyle.reportPaths=target/checkstyle-result.xml '''
-
-                }
-
+                sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=sriudayprofile-projects_su-analysis'
             }
         }
     }
