@@ -26,9 +26,8 @@ pipeline {
        
         }
 
-        stage('sonarcloud analysis') {
+        stage('buolding artifact') {
             steps {
-                withSonarQubeEnv('SonarCloud')
                 sh 'mvn clean package'
             }
         }
